@@ -158,16 +158,20 @@ public class MainActivity extends AppCompatActivity {
                     String temperature = response.getJSONObject("current").getString("temp_c");
                     temperatureTV.setText(temperature+"°C");
                     int isDay = response.getJSONObject("current").getInt("is_day");
+
                     String condition=response.getJSONObject("current").optJSONObject("condition").getString("text");
                     String conditionIcon=response.getJSONObject("current").optJSONObject("condition").getString("icon");
 
                     Picasso.get().load("http:".concat(conditionIcon)).into(iconIV);
                     conditionTV.setText(condition);
                     if(isDay==1){
-                        Picasso.get().load("https://cdn.freeyork.org/wp-content/uploads/2020/08/1h2pg97sxfa.jpg").into(backIV);
+                        Picasso.get().load("https://render.fineartamerica.com/images/rendered/square-dynamic/small/images/artworkimages/mediumlarge/1/evening-at-fallen-leaf-lake-jacek-joniec.jpg").into(backIV);
                     }else{
                         Picasso.get().load("https://th.bing.com/th/id/OIP.tC3Org6Qx236Za__kQsAAwHaNL?pid=ImgDet&w=750&h=1334&rs=1").into(backIV);
                     }
+
+
+
                     JSONObject forecastObj = response.getJSONObject("forecast");
                     JSONObject forecastO =forecastObj.getJSONArray("forecastday").getJSONObject(0);
                     JSONArray hourArray =forecastO.getJSONArray("hour");
